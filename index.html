@@ -9,18 +9,21 @@
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async ></script>
 
   <!-- Configuración opcional de MathJax -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [["\\(", "\\)"]],
-        displayMath: [["\\[", "\\]"]],
-        processEscapes: true
-      },
-      svg: {
-        fontCache: "global"
-      }
-    };
-  </script>
+
+		<script>
+			MathJax = {
+				tex: {
+					inlineMath: [['$', '$'], ['\\(', '\\)']],
+					displayMath: [['$$', '$$'], ['\\[', '\\]']],
+					macros: { R: '{\\mathbb{R}}',  // Ejemplo de comando personalizado
+						        N: '{\\mathbb{N}}'   // Otro comando personalizado
+					} },
+				options: { renderActions: {
+						findScript: [10, function (doc) { 
+							if (doc.isSVG) {
+								doc.scriptData.push(['svg', 1]);
+							}  }, ''] } } };
+		</script>
   <style>
     body { font-family: Arial, sans-serif; margin: 40px; }
     header, footer { background: #f0f0f0; padding: 10px; }
