@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Previsualización de Archivos</title>
+  <style>
+    #preview img,
+    #preview video,
+    #preview audio,
+    #preview iframe {
+      max-width: 200px;
+      margin: 10px;
+      display: block;
+    }
+    #preview pre {
+      background: #f4f4f4;
+      padding: 10px;
+      max-width: 400px;
+      overflow: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Selecciona archivos para previsualizar</h1>
+  <input
+    type="file"
+    id="file-input"
+    multiple
+    accept=".txt,application/pdf,image/*,video/*,audio/*"
+  />
+
+  <div id="preview"></div>
+
+  <script>
+    const input = document.getElementById('file-input');
+    const preview = document.getElementById('preview');
+
+    input.addEventListener('change', () => {
+      preview.innerHTML = ''; // limpiar vistas anteriores
+
+      Array.from(input.files).forEach(file => {
+        const type = file.type;
+        
+        // IMÁGENES
+        if (type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = e => {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            preview.appendChild(img);
+          };
+          reader.readAsDataURL(file);
+
+        // VÍDEO
+        } else if (type.startsWith('video/')) {
+          const reader = new FileReader();
+          reader.onload = e => {
+            const vid = document.createElement('video');
+            vid.controls = true;
+            vid.src = e.target.result;
+            preview.appendChild(vid);
+          };
+          reader.readAsDataURL(file);
+
+        // AUDIO
+        } else if (type.startsWith('audio/')) {
+          const reader = new FileReader();
+          reader.onload = e => {
+            const aud = document.createElement('audio');
+            aud.controls = true;
+            aud.src = e.target.result;
+            preview.appendChild(aud);
+          };
+          reader.readAsDataURL(file);
+
+        // PDF
+        } else if (type === 'application/pdf') {
+          const url = URL.createObjectURL(file);
+          const frame = document.createElement('iframe');
+          frame.src = url;
+          frame.width = 200;
+          frame.height = 250;
+          preview.appendChild(frame);
+
+        // TEXTO
+        } else if (type === 'text/plain') {
+          const reader = new FileReader();
+          reader.onload = e => {
+            const pre = document.createElement('pre');
+            pre.textContent = e.target.result;
+            preview.appendChild(pre);
+          };
+          reader.readAsText(file);
+
+        } else {
+          const msg = document.createElement('p');
+          msg.textContent = `Tipo no soportado: ${type}`;
+          preview.appendChild(msg);
+        }
+      });
+    });
+  </script>
+  <iframe src="https://tinyurl.com/ynxbc4ac" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen title="Clase_parte1.mp4"></iframe>
+</body>
+</html>
