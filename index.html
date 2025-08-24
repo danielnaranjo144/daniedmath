@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Página personal</title>
+
+  <!-- Cargar MathJax desde CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async ></script>
+
+  <!-- Configuración opcional de MathJax -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["\\(", "\\)"]],
+        displayMath: [["\\[", "\\]"]],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: "global"
+      }
+    };
+  </script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    header, footer { background: #f0f0f0; padding: 10px; }
+    nav ul { list-style: none; padding: 0; display: flex; gap: 10px; }
+    nav a { text-decoration: none; color: #333; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Bienvenido a mi sitio</h1>
+    <nav>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#acerca">Acerca</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio">
+      <h2>Sección de inicio</h2>
+      <p>Este es un párrafo de ejemplo en la sección de inicio.</p>
+    </section>
+
+    <section id="acerca">
+      <h2>Sección Acerca</h2>
+      <p>Información sobre el sitio y su propósito.</p>
+    </section>
+
+    <section id="contacto">
+      <h2>Sección Contacto</h2>
+      <p>Aquí irían los datos de contacto o un formulario.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Mi Sitio Web</p>
+  </footer>
+
+  <script>
+    console.log('Página cargada exitosamente');
+  </script>
+
+</body>
+</html>
